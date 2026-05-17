@@ -1,0 +1,7 @@
+#EXTM3U
+#EXT-X-VERSION:6
+
+#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio-aach-96",LANGUAGE="it",NAME="Italian",DEFAULT=YES,AUTOSELECT=YES,CHANNELS="2",URI="https://live02-seg.msf.cdn.mediaset.net/live/ch-b6/b6-clr.isml/b6-clr-audio_1=96000.m3u8"
+
+#EXT-X-STREAM-INF:BANDWIDTH=5704000,AVERAGE-BANDWIDTH=5185000,CODECS="mp4a.40.5,avc1.64002A",RESOLUTION=1920x1080,FRAME-RATE=25,VIDEO-RANGE=SDR,AUDIO="audio-aach-96",CLOSED-CAPTIONS=NONE
+https://live02-seg.msf.cdn.mediaset.net/live/ch-b6/b6-clr.isml/b6-clr-video=4800000.m3u8
