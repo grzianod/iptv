@@ -1,5 +1,5 @@
 #EXTM3U
-#EXT-X-VERSION:6
+#EXT-X-VERSION:4
 
 #EXT-X-MEDIA:TYPE=AUDIO,LANGUAGE="ita",NAME="Italiano",AUTOSELECT=YES,DEFAULT=YES,GROUP-ID="program_audio",URI="https://d3k8wzt41aflvx.cloudfront.net/RAI2/Live_aac128.m3u8"
 
