@@ -1,0 +1,46 @@
+name: Update Rai 4 HLS
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-rai4.yml'
+      - 'scripts/update_rai4.py'
+      - 'tests/test_update_rai4.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-rai4
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Check playlist rewriting and failure handling
+        run: python -B -m unittest discover -s tests -v
+      - name: Fetch and validate fresh Rai 4 media URLs
+        run: python -B scripts/update_rai4.py
+      - name: Publish only the generated master
+        shell: bash
+        run: |
+          git add -- rai/rai4.m3u8
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Refresh Rai 4 HLS media URLs'
+          git push origin HEAD:main
